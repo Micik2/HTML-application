@@ -1,0 +1,90 @@
+<!--<div id="addnew">-->
+<form id="register-form"> 
+    <!--<input type="text" id="id">-->
+    <input id="login" type="text" placeholder="Login" value=""/>
+    <!--<input type="text" id="content">-->
+    <input id="pw" type="password" placeholder="Password" value=""/>
+    <!--<input type="button" value="Add" id="submit">-->
+    <input id="ok" type="submit" value="Create Account" onClick="store()">
+</form> 
+<!--</div>-->
+
+<form id="login-form"> 
+    <input id="userName" type="text" placeholder="Enter username" value=""/>
+    <input id="userPw" type="password" placeholder="Enter password" value=""/>
+    <input id="login_btn" type="submit" value="Login" onClick="check()"/> 
+</form>
+<!--
+<form id="checking"> 
+    <input id="input" type="text" value=""/>
+    <input id="userPw" type="password" placeholder="Enter password" value=""/>
+    <input id="login_btn" type="submit" value="Login" onClick="check()"/> 
+</form>-->
+
+<!--<div id="check">
+    <input type="text" id="input">
+    <input type="button" value="Search" id="search">
+</div>-->
+
+<script language="JavaScript">
+
+function writeToFile(d1, d2){
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var fh = fso.OpenTextFile("loginy.txt", 8, false, 0);
+    fh.WriteLine(d1 + ' : ' + d2 + '\n');
+    fh.Close();
+}
+
+function store() {
+    var login = document.getElementById("login").value;
+    var pw = document.getElementById("pw").value;
+    writeToFile(login, pw);
+    <!--localStorage.setItem('name', name1.value);
+    <!--localStorage.setItem('pw', pw.value);
+}
+
+<!--var submit = document.getElementById("ok");
+<!--submit.onclick = function () {
+<!--var login      = document.getElementById("login").value;
+<!--    var pw = document.getElementById("pw").value;
+<!--    writeToFile(login, pw);
+<!--}-->
+
+function readFile() {
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var fh = fso.OpenTextFile("loginy.txt", 1, false, 0);
+    var lines = "";
+    while (!fh.AtEndOfStream) {
+        lines += fh.ReadLine() + "\r";
+    }
+    fh.Close();
+    return lines;
+}
+<!--var search = document.getElementById("search");
+<!--search.onclick = function () {
+function search(name, pw) {
+    <!--var input   = document.getElementById("input").value;
+    <!--if (input != "") {
+    if (name != "" && pw != "") {
+        var text    = readFile();
+        var lines   = text.split("\r");
+        lines.pop();
+        var result;
+        for (var i = 0; i < lines.length; i++) {
+            if (lines[i].match(new RegExp(name)) && lines[i].match(new RegExp(pw))) {
+                <!--result = "Found: " + lines[i].split(" : ")[1];
+                result = "Logged as: " + lines[i].split(" : ")[0];
+            }
+        }
+        if (result) { alert(result); }
+        else { alert(name + " not found!"); }
+    }
+}
+
+function check() {
+    var storedName = document.getElementById("userName").value;
+    var storedPw = document.getElementById("userPw").value;
+    search(storedName, storedPw);
+}
+
+</script>
